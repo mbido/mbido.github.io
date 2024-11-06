@@ -6,4 +6,156 @@
   .section-title {
     @apply text-3xl font-bold mb-6 text-primary;
   }
+
+  .project-card {
+    @apply bg-white rounded-lg overflow-hidden shadow border border-gray-200 transition-all duration-200 hover:shadow-md;
+  }
+
+  .project-title {
+    @apply text-xl font-semibold mb-2 text-primary hover:text-blue-600;
+  }
+
+  .project-description {
+    @apply text-secondary mb-4 text-sm leading-relaxed;
+  }
+
+  .project-tech-tag {
+    @apply bg-blue-50 text-blue-600 text-xs px-3 py-1 rounded-full font-medium transition-colors duration-300 hover:bg-blue-100;
+  }
+
+  .project-link {
+    @apply text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 mt-4 transition-colors duration-300;
+  }
+
+  .project-status {
+    @apply text-xs px-2 py-1 rounded-full;
+  }
+
+  .project-status-completed {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .project-status-in-progress {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .project-status-planned {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  .card-header {
+    @apply flex justify-between items-center mb-3;
+  }
+
+  .card-title {
+    @apply text-xl font-semibold text-gray-800;
+  }
+
+  .card-description {
+    @apply text-gray-700 text-sm mb-4;
+  }
+
+  .status-badge {
+    @apply text-xs font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-600;
+  }
+
+  .status-badge.completed {
+    @apply bg-green-50 text-green-700 border-green-200;
+  }
+
+  .status-badge.in-progress {
+    @apply bg-yellow-50 text-yellow-700 border-yellow-200;
+  }
+
+  .tech-stack {
+    @apply flex flex-wrap gap-2 mb-4;
+  }
+
+  .tech-badge {
+    @apply bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs;
+  }
+
+  .card-actions {
+    @apply flex gap-3 mt-auto;
+  }
+
+  .action-link {
+    @apply flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 transition-colors;
+  }
+
+  .action-link:first-child {
+    @apply bg-blue-50 text-blue-700 hover:bg-blue-100;
+  }
+
+  .action-link:last-child {
+    @apply bg-gray-50 text-gray-700 hover:bg-gray-100;
+  }
+
+  .action-link svg {
+    @apply w-4 h-4;
+  }
+
+  .card-image-container {
+    @apply relative w-full h-48 overflow-hidden bg-gray-100;
+  }
+
+  .card-image {
+    @apply w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105;
+  }
+
+  .card-image[src*="placeholder"] {
+    @apply object-contain p-4 opacity-50;
+  }
+
+  .card-image[src*="placeholder.png"] {
+    @apply object-contain p-4 opacity-50;
+  }
+
+  .card-content {
+    @apply p-5;
+  }
+
+  .skill-card {
+    @apply p-6 rounded-xl shadow-sm border border-gray-200 transition-all duration-300 hover:shadow-md hover:translate-y-[-2px];
+  }
+
+  .tech-list {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .tech-item {
+    @apply px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105;
+  }
+
+  .contact-link {
+    @apply block w-full transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .contact-card {
+    @apply flex flex-col items-center gap-3 p-6 rounded-xl shadow-sm border border-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 hover:from-blue-50 hover:to-blue-100 transition-all duration-300;
+  }
+
+  .contact-card svg {
+    @apply text-gray-600 transition-colors duration-200;
+  }
+
+  .contact-card:hover svg {
+    @apply text-blue-600;
+  }
+
+  .contact-card span {
+    @apply font-medium text-gray-700;
+  }
+
+  .lang-card {
+    @apply bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex flex-col items-center justify-center transition-all duration-200 hover:shadow-md;
+  }
+
+  .lang-name {
+    @apply font-semibold text-gray-800 mb-1;
+  }
+
+  .lang-level {
+    @apply text-sm text-gray-600;
+  }
 }

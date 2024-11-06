@@ -1,0 +1,102 @@
+{
+  "projects": [
+    {
+      "title": "E-commerce Platform",
+      "description": "Application web complète avec panier et paiement intégré. Gestion des produits, des commandes et des utilisateurs.",
+      "status": {
+        "type": "completed",
+        "label": "Terminé"
+      },
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL"
+      ],
+      "link": "#",
+      "github": "https://github.com/your-username/project",
+      "image": "/images/projects/ecommerce.jpg"
+    },
+    {
+      "title": "Machine Learning Model",
+      "description": "Développement d'un modèle de machine learning pour la prédiction des ventes.",
+      "status": {
+        "type": "in-progress",
+        "label": "En cours"
+      },
+      "technologies": [
+        "Python",
+        "TensorFlow",
+        "Pandas"
+      ],
+      "link": "#",
+      "github": "https://github.com/your-username/ml-model",
+      "image": "/images/projects/ml-model.jpg"
+    },
+    {
+      "title": "Portfolio Personnel",
+      "description": "Site web personnel responsive présentant mes projets et compétences. Développé avec des technologies modernes.",
+      "status": {
+        "type": "completed",
+        "label": "Terminé"
+      },
+      "technologies": [
+        "HTML/CSS",
+        "Tailwind CSS",
+        "JavaScript"
+      ],
+      "link": "#",
+      "github": "https://github.com/your-username/portfolio",
+      "image": "/images/projects/portfolio.jpg"
+    },
+    {
+      "title": "API REST Microservices",
+      "description": "Architecture microservices scalable pour la gestion de données distribuées. Implementation de patterns modernes.",
+      "status": {
+        "type": "in-progress",
+        "label": "En cours"
+      },
+      "technologies": [
+        "Node.js",
+        "Docker",
+        "Kubernetes",
+        "MongoDB"
+      ],
+      "link": "#",
+      "github": "https://github.com/your-username/microservices",
+      "image": "/images/projects/api.jpg"
+    },
+    {
+      "title": "Application Mobile Fitness",
+      "description": "Application mobile de suivi d'entraînement avec synchronisation cloud et analyses personnalisées.",
+      "status": {
+        "type": "planned",
+        "label": "Planifié"
+      },
+      "technologies": [
+        "React Native",
+        "Firebase",
+        "Redux"
+      ],
+      "link": "#",
+      "github": null,
+      "image": "/images/projects/fitness.jpg"
+    },
+    {
+      "title": "Chat Temps Réel",
+      "description": "Application de messagerie en temps réel avec support de salles de discussion et messages privés.",
+      "status": {
+        "type": "completed",
+        "label": "Terminé"
+      },
+      "technologies": [
+        "Socket.io",
+        "Express",
+        "MongoDB",
+        "Vue.js"
+      ],
+      "link": "#",
+      "github": "https://github.com/your-username/chat-app",
+      "image": "/images/projects/chat.jpg"
+    }
+  ]
+}
