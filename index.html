@@ -41,11 +41,20 @@
           </svg>
           contact@mbido.fr
         </a>
-        <a href="https://github.com/mbido" class="flex items-center text-blue-600 hover:text-blue-800"></a>
-        <svg class="w-5 h-5 mr-2" viewBox="0 0 98 96" fill="currentColor">
-          <!-- GitHub SVG path -->
-        </svg>
-        GitHub
+        <a href="https://github.com/mbido" class="flex items-center text-blue-600 hover:text-blue-800 mr-6">
+          <svg class="w-5 h-5 mr-2" viewBox="0 0 98 96" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
+          </svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/matthieu-bidault-278b41253/"
+          class="flex items-center text-blue-600 hover:text-blue-800">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+          LinkedIn
         </a>
       </div>
     </div>
@@ -54,35 +63,137 @@
   <!-- About Section -->
   <section id="about" class="py-16 bg-gray-50">
     <div class="container mx-auto px-6">
-      <div class="max-w-2xl mx-auto">
-        <h2 class="section-title">Formation</h2>
-        <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <h3 class="text-xl font-semibold text-primary mb-2">Master en Informatique</h3>
-          <p class="text-gray-600">La Sorbonne</p>
-          <p class="text-gray-700 mt-2">
-            Spécialisation en cryptographie et calcul haute performance
-          </p>
+      <div class="max-w-2xl mx-auto relative">
+        <!-- Timeline verticale -->
+        <div class="absolute right-0 w-4 h-full">
+          <div class="sticky top-0 timeline-dates h-full">
+            <!-- Les points seront générés dynamiquement par JavaScript -->
+          </div>
         </div>
 
-        <h3 class="text-xl font-semibold text-primary mb-4">Langues</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div class="lang-card">
-            <span class="lang-name">Français</span>
-            <span class="lang-level">Langue maternelle</span>
+        <h2 class="section-title">Formation</h2>
+
+        <div class="space-y-6">
+          <!-- Master -->
+          <div
+            class="education-card bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl shadow-sm border border-indigo-100">
+            <div class="flex flex-col">
+              <div class="flex justify-between items-start">
+                <div class="flex items-center">
+                  <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 16.9A5 5 0 0018 7h-1.26a8 8 0 10-11.62 9" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 11l5 5m0-5l-5 5" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-indigo-900">Master en Informatique</h3>
+                    <p class="text-indigo-700 font-semibold">Sorbonne Université</p>
+                  </div>
+                </div>
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm">
+                  <svg class="w-4 h-4 text-indigo-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-sm font-medium text-indigo-600">Paris (75)</span>
+                </div>
+              </div>
+              <div class="mt-4 pl-16">
+                <p class="text-indigo-900 font-medium mb-2">Spécialité CCA</p>
+                <p class="text-indigo-700">Cryptographie, Calcul haute performance et Algorithmes</p>
+              </div>
+            </div>
           </div>
-          <div class="lang-card"></div>
-          <span class="lang-name">Anglais</span>
-          <span class="lang-level">B2-C1</span>
-        </div>
-        <div class="lang-card">
-          <span class="lang-name">Italien</span>
-          <span class="lang-level">Basique</span>
+
+          <!-- Licence -->
+          <div
+            class="education-card bg-gradient-to-br from-violet-50 to-violet-100 p-6 rounded-xl shadow-sm border border-violet-100">
+            <div class="flex flex-col">
+              <div class="flex justify-between items-start">
+                <div class="flex items-center">
+                  <div class="w-12 h-12 bg-violet-100 rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 14l9-5-9-5-9 5 9 5z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-violet-900">Licence en Informatique</h3>
+                    <p class="text-violet-700 font-semibold">Université de Franche-Comté</p>
+                  </div>
+                </div>
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm">
+                  <svg class="w-4 h-4 text-violet-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-sm font-medium text-violet-600">Besançon (25)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bac -->
+          <div
+            class="education-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-sm border border-blue-100">
+            <div class="flex flex-col">
+              <div class="flex justify-between items-start">
+                <div class="flex items-center">
+                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 14l9-5-9-5-9 5 9 5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-blue-900">Baccalauréat</h3>
+                    <p class="text-blue-700 font-semibold">Lycée Paul-Emile Victor</p>
+                  </div>
+                </div>
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm">
+                  <svg class="w-4 h-4 text-blue-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-sm font-medium text-blue-600">Champagnole (39)</span>
+                </div>
+              </div>
+              <div class="mt-4 pl-16">
+                <p class="text-blue-700">Spécialité Mathématiques et Informatique</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    </div>
   </section>
 
+  <div class="container mx-auto px-6">
+    <div class="max-w-2xl mx-auto relative">
+      <h2 class="section-title">Langues</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="lang-card bg-gradient-to-br from-blue-50 to-blue-100">
+          <span class="lang-name text-blue-700">Français</span>
+          <span class="lang-level text-blue-600">Langue maternelle</span>
+        </div>
+        <div class="lang-card bg-gradient-to-br from-green-50 to-green-100">
+          <span class="lang-name text-green-700">Anglais</span>
+          <span class="lang-level text-green-600">B2-C1</span>
+        </div>
+        <div class="lang-card bg-gradient-to-br from-purple-50 to-purple-100">
+          <span class="lang-name text-purple-700">Italien</span>
+          <span class="lang-level text-purple-600">Basique</span>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Projects Section -->
   <section id="projects" class="py-16 bg-gray-50"></section>
   <div class="container mx-auto px-6">
@@ -145,7 +256,6 @@
         </div>
       </div>
     </div>
-    </div>
   </section>
 
   <!-- Contact Section -->
@@ -154,7 +264,7 @@
       <div class="max-w-2xl mx-auto">
         <h2 class="section-title">Contact</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a href="mailto:email@example.com" class="contact-link">
+          <a href="mailto:contact@mbido.fr" class="contact-link">
             <div class="contact-card">
               <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -164,7 +274,7 @@
             </div>
           </a>
 
-          <a href="https://linkedin.com/in/your-profile" target="_blank" class="contact-link">
+          <a href="https://www.linkedin.com/in/matthieu-bidault-278b41253/" target="_blank" class="contact-link">
             <div class="contact-card">
               <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -174,7 +284,7 @@
             </div>
           </a>
 
-          <a href="https://github.com/your-username" target="_blank" class="contact-link">
+          <a href="https://github.com/mbido" target="_blank" class="contact-link">
             <div class="contact-card">
               <svg class="w-8 h-8" viewBox="0 0 98 96" fill="currentColor">
                 <path fill-rule="evenodd" clip-rule="evenodd"

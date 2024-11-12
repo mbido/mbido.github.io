@@ -58,4 +58,91 @@ async function loadProjects() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadProjects);
+function initializeTimeline() {
+  const timelineContainer = document.querySelector('.timeline-dates');
+  const educationCards = document.querySelectorAll('.education-card');
+  const currentDate = new Date();
+
+  // Informations des points
+  const datesInfo = [
+    { type: 'future', label: 'Juillet 2025' },
+    { type: 'past', label: 'Juillet 2024' },
+    { type: 'past', label: 'Juillet 2021' }
+  ];
+
+  // Supprime les points existants
+  timelineContainer.innerHTML = '';
+
+  educationCards.forEach((card, index) => {
+    const cardRect = card.getBoundingClientRect();
+    const containerRect = timelineContainer.getBoundingClientRect();
+    const position = cardRect.top + cardRect.height / 2 - containerRect.top;
+
+    // Déclarer dateInfo avant de l'utiliser
+    const dateInfo = datesInfo[index] || { type: 'past', label: '' };
+
+    const point = document.createElement('div');
+    point.className = `timeline-point timeline-point-${dateInfo.type}`;
+
+    point.style.top = `${position}px`;
+
+    point.innerHTML = `
+      <div class="timeline-point-container">
+        <div class="timeline-dot timeline-dot-${dateInfo.type}"></div>
+        <span class="timeline-date">${dateInfo.label}</span>
+      </div>
+    `;
+
+    timelineContainer.appendChild(point);
+  });
+
+  // Calculer la distance par rapport à juillet 2024 et juillet 2026
+  const startDate = new Date(2024, 6); // Juillet 2024
+  const endDate = new Date(2026, 6);   // Juillet 2026
+  const totalMonths = 24; // Nombre total de mois entre juillet 2024 et juillet 2026
+
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const targetYear = startDate.getFullYear();
+  const targetMonth = startDate.getMonth();
+
+  const monthDiff = (currentYear - targetYear) * 12 + (currentMonth - targetMonth);
+  const proportion = monthDiff / totalMonths;
+
+  let type, label;
+  if (monthDiff === 0) {
+    type = 'present';
+    label = 'Juillet 2024';
+  } else if (monthDiff > 0 && monthDiff <= totalMonths) {
+    type = 'past';
+    label = currentDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+  } else {
+    type = 'future';
+    label = currentDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+  }
+
+  // Définir une position fixe équidistante entre juillet 2024 et juillet 2025
+  const containerHeight = timelineContainer.clientHeight;
+  const positionDistance = 3 * containerHeight / 7; // Position fixe au milieu
+
+  // Ajouter le point fixe
+  const fixedPoint = document.createElement('div');
+  fixedPoint.className = 'timeline-point timeline-point-present';
+  fixedPoint.style.top = `${positionDistance}px`;
+
+  // Définir la hauteur des pointillés
+  timelineContainer.style.setProperty('--timeline-dotted-height', `${positionDistance}px`);
+
+  fixedPoint.innerHTML = `
+    <div class="timeline-point-container">
+      <div class="timeline-dot timeline-dot-present"></div>
+      <span class="timeline-date">${currentDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })} (aujourd'hui)</span>
+    </div>
+  `;
+  timelineContainer.appendChild(fixedPoint);
+}
+
+window.addEventListener('load', () => {
+  loadProjects();
+  initializeTimeline();
+});

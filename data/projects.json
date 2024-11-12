@@ -13,7 +13,7 @@
         "PostgreSQL"
       ],
       "link": "#",
-      "github": "https://github.com/your-username/project",
+      "github": "https://github.com/mbido/project",
       "image": "/images/projects/ecommerce.jpg"
     },
     {
@@ -29,7 +29,7 @@
         "Pandas"
       ],
       "link": "#",
-      "github": "https://github.com/your-username/ml-model",
+      "github": "https://github.com/mbido/ml-model",
       "image": "/images/projects/ml-model.jpg"
     },
     {
@@ -45,7 +45,7 @@
         "JavaScript"
       ],
       "link": "#",
-      "github": "https://github.com/your-username/portfolio",
+      "github": "https://github.com/mbido/portfolio",
       "image": "/images/projects/portfolio.jpg"
     },
     {
@@ -62,7 +62,7 @@
         "MongoDB"
       ],
       "link": "#",
-      "github": "https://github.com/your-username/microservices",
+      "github": "https://github.com/mbido/microservices",
       "image": "/images/projects/api.jpg"
     },
     {
@@ -95,7 +95,7 @@
         "Vue.js"
       ],
       "link": "#",
-      "github": "https://github.com/your-username/chat-app",
+      "github": "https://github.com/mbido/chat-app",
       "image": "/images/projects/chat.jpg"
     }
   ]
