@@ -1,19 +1,19 @@
 {
   "projects": [
     {
-      "title": "E-commerce Platform",
-      "description": "Application web complète avec panier et paiement intégré. Gestion des produits, des commandes et des utilisateurs.",
+      "title": "Raycasting Portal",
+      "description": "Un moteur de rendu semi 3D implémentant une physique de portail au style du jeu Portal (2007).",
       "status": {
         "type": "completed",
         "label": "Terminé"
       },
       "technologies": [
-        "React",
-        "Node.js",
-        "PostgreSQL"
+        "C++",
+        "CMAKE",
+        "Latex"
       ],
       "link": "#",
-      "github": "https://github.com/mbido/project",
+      "github": "https://github.com/mbido/raycastingportal",
       "image": "/images/projects/ecommerce.jpg"
     },
     {
