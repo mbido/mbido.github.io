@@ -142,7 +142,29 @@ function initializeTimeline() {
   timelineContainer.appendChild(fixedPoint);
 }
 
+function initializeTimelineInteractions() {
+  const educationCards = document.querySelectorAll('.education-card');
+  const timelinePoints = document.querySelectorAll('.timeline-point');
+
+  educationCards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      if (timelinePoints[index]) {
+        timelinePoints[index].querySelector('.timeline-dot').classList.add('hovered');
+        timelinePoints[index].classList.add('hovered');
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      if (timelinePoints[index]) {
+        timelinePoints[index].querySelector('.timeline-dot').classList.remove('hovered');
+        timelinePoints[index].classList.remove('hovered');
+      }
+    });
+  });
+}
+
 window.addEventListener('load', () => {
   loadProjects();
   initializeTimeline();
+  initializeTimelineInteractions(); // Ajoutez cette ligne
 });

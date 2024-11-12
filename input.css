@@ -266,7 +266,15 @@
     @apply text-violet-600;
   }
 
+  .timeline-dot.hovered {
+    @apply scale-125 transition-transform duration-200;
+  }
+
+  .timeline-point.hovered .timeline-date {
+    @apply font-bold transition-all duration-200;
+  }
+
   .education-card {
-    @apply w-[90%] transition-all duration-300 hover:translate-y-[-2px];
+    @apply w-[90%] transition-all duration-300 hover:translate-y-[-2px] cursor-pointer;
   }
 }
