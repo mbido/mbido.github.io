@@ -1,0 +1,28 @@
+version: '1.0'
+
+# TypeScript Compilation
+typescript:
+  input: './src/**/*.ts'
+  output: './dist/js'
+  options:
+    target: 'ES6'
+    module: 'commonjs'
+  commands:
+    - 'tsc'
+
+# Tailwind CSS Compilation
+tailwind:
+  input: './input.css'
+  output: './dist/output.css'
+  options:
+    config: './tailwind.config.js'
+  commands:
+    - 'npx tailwindcss -i ./input.css -o ./dist/output.css --minify'
+
+# Build Process
+build:
+  steps:
+    - name: 'Compile TypeScript'
+      run: 'tsc'
+    - name: 'Compile Tailwind CSS'
+      run: 'npx tailwindcss -i ./input.css -o ./dist/output.css --minify'
