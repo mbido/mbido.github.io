@@ -5,135 +5,164 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Matthieu Bidault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="./dist/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-100 font-sans text-gray-800"> <!-- Base styles from input.css -->
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
-    <nav class="container max-w-4xl mx-auto px-6 py-4">
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm" aria-label="Primary Site Navigation">
+    <nav class="container max-w-5xl mx-auto px-6 py-3" role="navigation"> <!-- Increased max-width slightly -->
       <div class="flex justify-between items-center">
-        <a href="#" class="text-2xl font-bold text-primary hover:text-blue-600 transition-colors">Matthieu Bidault</a>
-        <ul class="flex space-x-6">
-          <li><a href="#about" class="hover:text-blue-600">À propos</a></li>
-          <li><a href="#skills" class="hover:text-blue-600">Compétences</a></li>
-          <li><a href="#projects" class="hover:text-blue-600">Projets</a></li>
-          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+        <a href="#" class="text-3xl font-headline font-bold text-primary hover:text-secondary transition-colors duration-300">Matthieu Bidault</a>
+        <ul class="flex space-x-2 md:space-x-4" aria-label="Main navigation links">
+          <li><a href="#about" class="nav-link">À propos</a></li>
+          <li><a href="#skills" class="nav-link">Compétences</a></li>
+          <li><a href="#projects" class="nav-link">Projets</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </div>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <section class="bg-white py-20">
-    <div class="container max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold text-primary mb-4">Matthieu Bidault</h2>
-      <p class="text-xl text-secondary mb-8">Étudiant en master informatique</p>
-      <p class="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
-        Spécialité : Cryptographie, Calcul haute performance et Algorithmes
-      </p>
-
-      <div class="flex justify-center items-center mb-6">
-        <a href="mailto:contact@mbido.fr" class="flex items-center text-blue-600 hover:text-blue-800 mr-6">
-          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-          </svg>
-          contact@mbido.fr
-        </a>
-        <a href="https://github.com/mbido" class="flex items-center text-blue-600 hover:text-blue-800 mr-6">
-          <svg class="w-5 h-5 mr-2" viewBox="0 0 98 96" fill="currentColor">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
-          </svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/matthieu-bidault-278b41253/"
-          class="flex items-center text-blue-600 hover:text-blue-800">
-          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-          </svg>
-          LinkedIn
-        </a>
+  <section id="hero" class="bg-gradient-to-br from-primary-light via-teal-50 to-white py-20 lg:py-28" role="banner" aria-labelledby="hero-heading"> <!-- Playful gradient -->
+    <div class="container max-w-5xl mx-auto px-6"> <!-- Increased max-width slightly -->
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <!-- Hero Content Left -->
+        <div class="hero-content-left md:w-3/5 text-center md:text-left">
+          <h1 id="hero-heading" class="text-4xl sm:text-5xl lg:text-6xl font-headline font-extrabold text-primary-dark mb-6 leading-tight">
+            Matthieu Bidault
+          </h1>
+          <p class="text-xl lg:text-2xl text-gray-700 font-sans mb-6">
+            Étudiant en <strong class="font-semibold text-primary">Master Informatique</strong>
+          </p>
+          <p class="text-lg text-gray-600 font-sans mb-10">
+            Spécialisé en <span class="font-semibold text-primary-dark">Cryptographie</span>, 
+            <span class="font-semibold text-primary-dark">Calcul Haute Performance</span> &amp; 
+            <span class="font-semibold text-primary-dark">Algorithmique Avancée</span>.
+          </p>
+          
+          <!-- Call to Action Buttons/Links -->
+          <div class="hero-cta flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="mailto:contact@mbido.fr" class="cta-button-primary group flex items-center justify-center">
+              <svg class="w-5 h-5 mr-2.5 transition-transform group-hover:rotate-[-10deg]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              Contactez-moi
+            </a>
+            <a href="#projects" class="cta-button-secondary group flex items-center justify-center">
+              Voir mes projets
+              <svg class="w-4 h-4 ml-2.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+          </div>
+          
+          <!-- Social Links -->
+          <div class="social-links mt-10 flex justify-center md:justify-start space-x-5">
+            <a href="https://github.com/mbido" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="social-link-icon">
+              <svg class="w-9 h-9" viewBox="0 0 98 96" fill="currentColor"> {/* Increased size slightly */}
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/matthieu-bidault-278b41253/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-link-icon">
+              <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"> {/* Increased size slightly */}
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <!-- Hero Visual Right -->
+        <div class="hero-visual-right md:w-2/5 flex justify-center items-center mt-10 md:mt-0">
+          <!-- Placeholder for image/graphic -->
+          <div class="w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-teal-300 via-orange-300 to-purple-400 rounded-full shadow-2xl flex items-center justify-center p-2 animate-pulse-slow">
+            <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-headline text-xl">MB</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-2xl mx-auto relative">
+  <section id="about" class="py-16 lg:py-20 bg-white" aria-labelledby="about-heading"> <!-- Alternating bg from input.css base body -->
+    <div class="container max-w-4xl mx-auto px-6"> <!-- Standardized width -->
+      <div class="relative"> <!-- Removed max-w-2xl from here, let container handle it -->
         <!-- Timeline verticale -->
-        <div class="absolute right-0 w-4 h-full">
-          <div class="sticky top-0 timeline-dates h-full">
+        <div class="hidden md:block absolute right-0 w-4 h-full"> <!-- This might need CSS adjustments for responsiveness -->
+          <div class="sticky top-1/4 timeline-dates h-full">
             <!-- Les points seront générés dynamiquement par JavaScript -->
           </div>
         </div>
 
-        <h2 class="section-title">Formation</h2>
+        <h2 id="about-heading" class="section-title">Formation</h2> <!-- Uses new .section-title style -->
 
-        <div class="space-y-6">
+        <div class="space-y-8 md:pr-12"> <!-- Added padding-right for timeline space on md+ -->
           <!-- Master -->
           <div
-            class="education-card bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl shadow-sm border border-purple-100">
+            class="education-card bg-gradient-to-br from-teal-50 to-green-50 p-6 rounded-xl shadow-lg border border-teal-100 hover:shadow-xl transition-shadow duration-300">
             <div class="flex flex-col">
               <div class="flex justify-between items-start">
                 <div class="flex items-center">
-                  <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mr-4 shadow-md">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M19 16.9A5 5 0 0018 7h-1.26a8 8 0 10-11.62 9" />
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 11l5 5m0-5l-5 5" />
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-purple-900">Master en Informatique</h3>
-                    <p class="text-purple-700 font-semibold">Sorbonne Université</p>
+                    <h3 class="text-xl font-headline font-bold text-primary-dark">Master en Informatique</h3>
+                    <p class="text-teal-700 font-semibold font-sans">Sorbonne Université</p>
                   </div>
                 </div>
-                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm">
-                  <svg class="w-4 h-4 text-purple-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm border border-teal-200">
+                  <svg class="w-4 h-4 text-primary mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
                       d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                       clip-rule="evenodd" />
                   </svg>
-                  <span class="text-sm font-medium text-purple-600">Paris (75)</span>
+                  <span class="text-sm font-medium text-primary font-sans">Paris (75)</span>
                 </div>
               </div>
               <div class="mt-4 pl-16">
-                <p class="text-purple-900 font-medium mb-2">Spécialité CCA</p>
-                <p class="text-purple-700">Cryptographie, Calcul haute performance et Algorithmes</p>
+                <p class="text-gray-700 font-sans font-medium mb-2">Spécialité CCA</p>
+                <p class="text-gray-600 font-sans">Cryptographie, Calcul haute performance et Algorithmes</p>
               </div>
             </div>
           </div>
 
           <!-- Licence -->
           <div
-            class="education-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-sm border border-green-100">
+            class="education-card bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl shadow-lg border border-orange-100 hover:shadow-xl transition-shadow duration-300">
             <div class="flex flex-col">
               <div class="flex justify-between items-start">
                 <div class="flex items-center">
-                  <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4 shadow-md"> <!-- Used orange-100 assuming secondary-light is similar -->
+                    <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 14l9-5-9-5-9 5 9 5z" />
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-green-900">Licence en Informatique</h3>
-                    <p class="text-green-700 font-semibold">Université de Franche-Comté</p>
+                    <h3 class="text-xl font-headline font-bold text-secondary-dark">Licence en Informatique</h3>
+                    <p class="text-orange-700 font-semibold font-sans">Université de Franche-Comté</p>
                   </div>
                 </div>
-                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm">
-                  <svg class="w-4 h-4 text-green-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd"
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm border border-orange-200">
+                  <svg class="w-4 h-4 text-secondary mr-1" fill="currentColor" viewBox="0 0 20 20">
+                     <path fill-rule="evenodd"
                       d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                       clip-rule="evenodd" />
                   </svg>
-                  <span class="text-sm font-medium text-green-600">Besançon (25)</span>
+                  <span class="text-sm font-medium text-secondary font-sans">Besançon (25)</span>
                 </div>
               </div>
             </div>
@@ -141,32 +170,32 @@
 
           <!-- Bac -->
           <div
-            class="education-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-sm border border-blue-100">
+            class="education-card bg-gradient-to-br from-gray-100 to-gray-200 p-6 rounded-xl shadow-lg border border-gray-300 hover:shadow-xl transition-shadow duration-300"> <!-- Neutral colors for Bac -->
             <div class="flex flex-col">
               <div class="flex justify-between items-start">
                 <div class="flex items-center">
-                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4 shadow-md">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 14l9-5-9-5-9 5 9 5z" />
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-blue-900">Baccalauréat</h3>
-                    <p class="text-blue-700 font-semibold">Lycée Paul-Emile Victor</p>
+                    <h3 class="text-xl font-headline font-bold text-gray-800">Baccalauréat</h3>
+                    <p class="text-gray-700 font-semibold font-sans">Lycée Paul-Emile Victor</p>
                   </div>
                 </div>
-                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm">
-                  <svg class="w-4 h-4 text-blue-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm border border-gray-300">
+                  <svg class="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
                       d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                       clip-rule="evenodd" />
                   </svg>
-                  <span class="text-sm font-medium text-blue-600">Champagnole (39)</span>
+                  <span class="text-sm font-medium text-gray-600 font-sans">Champagnole (39)</span>
                 </div>
               </div>
               <div class="mt-4 pl-16">
-                <p class="text-blue-700">Spécialité Mathématiques et Informatique</p>
+                <p class="text-gray-600 font-sans">Spécialité Mathématiques et Informatique</p>
               </div>
             </div>
           </div>
@@ -176,138 +205,139 @@
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-2xl mx-auto">
-        <h2 class="section-title">Compétences</h2>
+  <section id="skills" class="py-16 lg:py-20 bg-gray-50" aria-labelledby="skills-heading"> <!-- Alternating background -->
+    <div class="container max-w-4xl mx-auto px-6">
+        <h2 id="skills-heading" class="section-title">Compétences</h2>
 
-        <!-- Programmation -->
-        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Programmation</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <!-- Core Languages -->
-          <div class="skill-card bg-gradient-to-br from-blue-50 to-blue-100">
-            <h3 class="skill-title text-blue-700">Langages Principaux</h3>
-            <div class="tech-list">
-              <span class="tech-item bg-white text-blue-600">C/C++</span>
-              <span class="tech-item bg-white text-blue-600">Python</span>
-              <span class="tech-item bg-white text-blue-600">LaTeX</span>
+        <div role="list" aria-labelledby="programming-skills-heading">
+          <h3 id="programming-skills-heading" class="text-2xl font-headline font-semibold text-primary-dark mb-8 text-center md:text-left">Programmation &amp; Technologies</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"> <!-- Increased gap -->
+            <!-- Core Languages -->
+            <div class="skill-card bg-gradient-to-br from-teal-50 via-primary-light to-green-50 p-6 rounded-xl shadow-lg border-teal-100">
+              <h4 class="skill-title text-primary-dark font-headline text-xl mb-4">Langages Principaux</h4>
+              <div class="tech-list flex flex-wrap gap-3"> <!-- Increased gap -->
+                <span class="tech-item bg-white text-primary border border-primary-light shadow-sm hover:bg-primary hover:text-white px-4 py-1.5">C/C++</span>
+                <span class="tech-item bg-white text-primary border border-primary-light shadow-sm hover:bg-primary hover:text-white px-4 py-1.5">Python</span>
+                <span class="tech-item bg-white text-primary border border-primary-light shadow-sm hover:bg-primary hover:text-white px-4 py-1.5">LaTeX</span>
+              </div>
             </div>
-          </div>
 
-          <!-- Secondary Languages -->
-          <div class="skill-card bg-gradient-to-br from-green-50 to-green-100">
-            <h3 class="skill-title text-green-700">Langages Secondaires</h3>
-            <div class="tech-list">
-              <span class="tech-item bg-white text-green-600">OCaml</span>
-              <span class="tech-item bg-white text-green-600">Java</span>
-              <span class="tech-item bg-white text-green-600">Ruby</span>
-              <span class="tech-item bg-white text-green-600">Scheme</span>
+            <!-- Secondary Languages -->
+            <div class="skill-card bg-gradient-to-br from-orange-50 via-orange-100 to-red-50 p-6 rounded-xl shadow-lg border-orange-100"> <!-- Adjusted gradient for orange -->
+              <h4 class="skill-title text-secondary-dark font-headline text-xl mb-4">Langages Secondaires</h4>
+              <div class="tech-list flex flex-wrap gap-3">
+                <span class="tech-item bg-white text-secondary border border-orange-200 shadow-sm hover:bg-secondary hover:text-white px-4 py-1.5">OCaml</span>
+                <span class="tech-item bg-white text-secondary border border-orange-200 shadow-sm hover:bg-secondary hover:text-white px-4 py-1.5">Java</span>
+                <span class="tech-item bg-white text-secondary border border-orange-200 shadow-sm hover:bg-secondary hover:text-white px-4 py-1.5">Ruby</span>
+                <span class="tech-item bg-white text-secondary border border-orange-200 shadow-sm hover:bg-secondary hover:text-white px-4 py-1.5">Scheme</span>
+              </div>
             </div>
-          </div>
 
-          <!-- Technologies -->
-          <div class="skill-card bg-gradient-to-br from-purple-50 to-purple-100">
-            <h3 class="skill-title text-purple-700">Technologies</h3>
-            <div class="tech-list">
-              <span class="tech-item bg-white text-purple-600">MPI</span>
-              <span class="tech-item bg-white text-purple-600">GoogleTest</span>
-              <span class="tech-item bg-white text-purple-600">CMake</span>
-              <span class="tech-item bg-white text-purple-600">Grid5000</span>
+            <!-- Technologies -->
+            <div class="skill-card bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-6 rounded-xl shadow-lg border-indigo-100">
+              <h4 class="skill-title text-indigo-700 font-headline text-xl mb-4">Technologies &amp; Outils</h4>
+              <div class="tech-list flex flex-wrap gap-3">
+                <span class="tech-item bg-white text-indigo-600 border border-indigo-100 shadow-sm hover:bg-indigo-600 hover:text-white px-4 py-1.5">MPI</span>
+                <span class="tech-item bg-white text-indigo-600 border border-indigo-100 shadow-sm hover:bg-indigo-600 hover:text-white px-4 py-1.5">GoogleTest</span>
+                <span class="tech-item bg-white text-indigo-600 border border-indigo-100 shadow-sm hover:bg-indigo-600 hover:text-white px-4 py-1.5">CMake</span>
+                <span class="tech-item bg-white text-indigo-600 border border-indigo-100 shadow-sm hover:bg-indigo-600 hover:text-white px-4 py-1.5">Grid5000</span>
+              </div>
             </div>
-          </div>
 
-          <!-- Web Technologies -->
-          <div class="skill-card bg-gradient-to-br from-yellow-50 to-yellow-100">
-            <h3 class="skill-title text-yellow-700">Technologies Web</h3>
-            <div class="tech-list"></div>
-            <span class="tech-item bg-white text-yellow-600">HTML/CSS</span>
-            <span class="tech-item bg-white text-yellow-600">JavaScript</span>
-            <span class="tech-item bg-white text-yellow-600">TypeScript</span>
-            <span class="tech-item bg-white text-yellow-600">TailwindCSS</span>
+            <!-- Web Technologies -->
+            <div class="skill-card bg-gradient-to-br from-sky-50 via-blue-50 to-cyan-50 p-6 rounded-xl shadow-lg border-sky-100">
+              <h4 class="skill-title text-sky-700 font-headline text-xl mb-4">Technologies Web</h4>
+              <div class="tech-list flex flex-wrap gap-3">
+                <span class="tech-item bg-white text-sky-600 border border-sky-100 shadow-sm hover:bg-sky-600 hover:text-white px-4 py-1.5">HTML/CSS</span>
+                <span class="tech-item bg-white text-sky-600 border border-sky-100 shadow-sm hover:bg-sky-600 hover:text-white px-4 py-1.5">JavaScript</span>
+                <span class="tech-item bg-white text-sky-600 border border-sky-100 shadow-sm hover:bg-sky-600 hover:text-white px-4 py-1.5">TypeScript</span>
+                <span class="tech-item bg-white text-sky-600 border border-sky-100 shadow-sm hover:bg-sky-600 hover:text-white px-4 py-1.5">TailwindCSS</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Langues -->
-        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Langues</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div class="lang-card bg-gradient-to-br from-blue-50 to-blue-100">
-            <span class="lang-name text-blue-700">Français</span>
-            <span class="lang-level text-blue-600">Langue maternelle</span>
-          </div>
-          <div class="lang-card bg-gradient-to-br from-green-50 to-green-100">
-            <span class="lang-name text-green-700">Anglais</span>
-            <span class="lang-level text-green-600">B2-C1</span>
-          </div>
-          <div class="lang-card bg-gradient-to-br from-purple-50 to-purple-100">
-            <span class="lang-name text-purple-700">Italien</span>
-            <span class="lang-level text-purple-600">Basique</span>
+        <div role="list" aria-labelledby="language-skills-heading">
+          <h3 id="language-skills-heading" class="text-2xl font-headline font-semibold text-primary-dark mb-8 text-center md:text-left">Langues</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6"> <!-- Adjusted gap for consistency -->
+            <div class="lang-card bg-gradient-to-br from-teal-50 to-primary-light p-6 rounded-xl shadow-lg text-center border-teal-100">
+              <span class="lang-name text-primary-dark font-headline text-lg block mb-1">Français</span>
+              <span class="lang-level text-primary font-sans text-sm">Langue maternelle</span>
+            </div>
+            <div class="lang-card bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl shadow-lg text-center border-orange-100"> <!-- Adjusted gradient -->
+              <span class="lang-name text-secondary-dark font-headline text-lg block mb-1">Anglais</span>
+              <span class="lang-level text-secondary font-sans text-sm">B2-C1 (Avancé)</span>
+            </div>
+            <div class="lang-card bg-gradient-to-br from-gray-100 to-gray-200 p-6 rounded-xl shadow-lg text-center border-gray-200"> <!-- Adjusted gradient -->
+              <span class="lang-name text-gray-700 font-headline text-lg block mb-1">Italien</span>
+              <span class="lang-level text-gray-600 font-sans text-sm">A2 (Basique)</span>
+            </div>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-2xl mx-auto">
-        <h2 class="section-title">Projets</h2>
-        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+  <section id="projects" class="py-16 lg:py-20 bg-white" aria-labelledby="projects-heading"> <!-- Alternating background -->
+    <div class="container max-w-5xl mx-auto px-6"> <!-- Wider container -->
+        <h2 id="projects-heading" class="section-title">Projets Réalisés</h2> <!-- Uses new .section-title style -->
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           <!-- Les projets seront chargés dynamiquement ici -->
         </div>
-      </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-2xl mx-auto">
-        <h2 class="section-title">Contact</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a href="mailto:contact@mbido.fr" class="contact-link">
-            <div class="contact-card">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path
+  <section id="contact" class="py-16 lg:py-20 bg-primary-light" aria-labelledby="contact-heading"> <!-- Themed background -->
+    <div class="container max-w-3xl mx-auto px-6"> <!-- Narrower for contact form feel -->
+        <h2 id="contact-heading" class="section-title">Entrons en Contact</h2> <!-- Uses new .section-title style -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-8"> <!-- Adjusted gap -->
+          <a href="mailto:contact@mbido.fr" class="contact-link group">
+            <div class="contact-card bg-white hover:bg-teal-50 p-6 rounded-xl shadow-lg hover:shadow-primary/20 border border-transparent hover:border-primary transition-all duration-300 flex flex-col items-center text-center">
+              <svg class="w-12 h-12 text-primary mb-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                 <path
                   d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
               </svg>
-              <span>Email</span>
+              <span class="text-primary-dark font-headline text-lg">Email</span>
             </div>
           </a>
 
-          <a href="https://www.linkedin.com/in/matthieu-bidault-278b41253/" target="_blank" class="contact-link">
-            <div class="contact-card">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path
+          <a href="https://www.linkedin.com/in/matthieu-bidault-278b41253/" target="_blank" rel="noopener noreferrer" class="contact-link group">
+            <div class="contact-card bg-white hover:bg-orange-50 p-6 rounded-xl shadow-lg hover:shadow-secondary/20 border border-transparent hover:border-secondary transition-all duration-300 flex flex-col items-center text-center">
+              <svg class="w-12 h-12 text-secondary mb-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                 <path
                   d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
-              <span>LinkedIn</span>
+              <span class="text-secondary-dark font-headline text-lg">LinkedIn</span>
             </div>
           </a>
 
-          <a href="https://github.com/mbido" target="_blank" class="contact-link">
-            <div class="contact-card">
-              <svg class="w-8 h-8" viewBox="0 0 98 96" fill="currentColor">
-                <path fill-rule="evenodd" clip-rule="evenodd"
+          <a href="https://github.com/mbido" target="_blank" rel="noopener noreferrer" class="contact-link group">
+            <div class="contact-card bg-white hover:bg-gray-100 p-6 rounded-xl shadow-lg hover:shadow-gray-500/20 border border-transparent hover:border-gray-400 transition-all duration-300 flex flex-col items-center text-center">
+              <svg class="w-12 h-12 text-gray-700 group-hover:text-gray-900 mb-4 transition-transform group-hover:scale-110" viewBox="0 0 98 96" fill="currentColor"> <!-- Custom GitHub color -->
+                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
               </svg>
-              <span>GitHub</span>
+              <span class="text-gray-800 group-hover:text-black font-headline text-lg">GitHub</span>
             </div>
           </a>
         </div>
-      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-8">
-    <div class="container max-w-4xl mx-auto px-6 text-center">
-      <p>&copy; 2024 Matthieu Bidault. Tous droits réservés.</p>
+  <footer class="bg-primary-dark text-white py-12"> <!-- Themed dark footer -->
+    <div class="container max-w-5xl mx-auto px-6 text-center"> <!-- Consistent width -->
+      <p class="text-gray-300 font-sans">&copy; 2024 Matthieu Bidault. Tous droits réservés.</p>
+      <p class="mt-3 text-sm text-teal-200 font-sans">
+        Conçu avec <span class="text-secondary animate-pulse">&hearts;</span> et une touche de <span class="font-bold text-teal-100">TailwindCSS</span>.
+      </p>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="./js/projectLoader.js"></script>
+  <script src="./js/timeline.js"></script> <!-- Assuming timeline.js exists and is needed -->
 </body>
 
 </html>
