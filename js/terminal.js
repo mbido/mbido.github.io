@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentCommand = '';
 
   function getPrompt() {
-    return `\x1b[1;32muser@portfolio\x1b[0m:\x1b[1;34m${currentPath}\x1b[0m$ `;
+    return `\x1b[1;32mguest@MyPortfolio\x1b[0m:\x1b[1;34m${
+        currentPath}\x1b[0m$ `;
   }
 
   function printPrompt() {
