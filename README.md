@@ -29,22 +29,6 @@ Upon loading, you'll see a terminal prompt. Type commands to interact:
 - `tree`: Display the virtual file system structure.
 - `clear`: Clear the terminal screen.
 
-
-## 🚀 Setup (For Developers)
-
-This is a static site. You can run it locally or deploy it to any static hosting service.
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/yourusername/portfolio-terminal.git
-    cd portfolio-terminal
-    ```
-2.  **Open `index.html` in your browser** or use a local static server (e.g., `python -m http.server` or `npx serve`).
-
-## 🤝 Contributing
-
-Feel free to fork this repository, open issues, or submit pull requests.
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
