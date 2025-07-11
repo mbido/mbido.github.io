@@ -29,9 +29,6 @@ Upon loading, you'll see a terminal prompt. Type commands to interact:
 - `tree`: Display the virtual file system structure.
 - `clear`: Clear the terminal screen.
 
-## 🌐 Live Demo
-
-[Link to your live demo here, e.g., `https://yourusername.github.io/portfolio-terminal/`]
 
 ## 🚀 Setup (For Developers)
 
