@@ -4,7 +4,7 @@ const filesystem = {
   'projects': {type: 'directory', children: {'portfolio.md': {type: 'file'}}}
 };
 
-export function resolvePath(path, currentPath) {
+function resolvePath(path, currentPath) {
   if (!path) return currentPath;
   if (path.startsWith('/')) return path;
 
@@ -24,7 +24,7 @@ export function resolvePath(path, currentPath) {
   return '/' + parts.join('/');
 }
 
-export function getNodeFromPath(path, currentPath) {
+function getNodeFromPath(path, currentPath) {
   const resolvedPath = resolvePath(path, currentPath);
   const parts = resolvedPath.split('/').filter(p => p);
   let currentNode = filesystem;
@@ -32,6 +32,16 @@ export function getNodeFromPath(path, currentPath) {
     if (currentNode[part] && currentNode[part].type === 'directory') {
       currentNode = currentNode[part].children;
     } else if (currentNode[part]) {
+      // If it's a file, attach the content from the global markdownContent
+      // object
+      if (currentNode[part].type === 'file') {
+        const fullPath = '/' + parts.join('/');
+        const relativePath = fullPath.substring(1);  // Remove leading slash
+        return {
+          ...currentNode[part],
+          content: window.markdownContent[relativePath]
+        };
+      }
       return currentNode[part];
     } else {
       return null;
@@ -40,7 +50,7 @@ export function getNodeFromPath(path, currentPath) {
   return {type: 'directory', children: currentNode};
 }
 
-export function getDirContent(path, currentPath) {
+function getDirContent(path, currentPath) {
   const node = getNodeFromPath(path, currentPath);
   return node ? node.children : {};
 }

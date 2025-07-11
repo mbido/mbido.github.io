@@ -1,6 +1,3 @@
-import {getDirContent, getNodeFromPath, resolvePath} from './filesystem.js';
-import {renderMarkdownToTerminal} from './markdownRenderer.js';
-
 function printTree(term, node, prefix, isLast) {
   const entries = Object.keys(node);
   if (entries.length === 0) {
@@ -22,7 +19,7 @@ function printTree(term, node, prefix, isLast) {
   });
 }
 
-export async function executeCommand(term, command, currentPath) {
+async function executeCommand(term, command, currentPath) {
   const [cmd, ...args] = command.trim().split(' ');
   let newPath = currentPath;
 
@@ -66,24 +63,13 @@ export async function executeCommand(term, command, currentPath) {
     case 'cat':
       const filePath = args[0];
       const fileNode = getNodeFromPath(filePath, currentPath);
-      if (fileNode && fileNode.type === 'file') {
-        const realPath = 'fs' + resolvePath(filePath, currentPath);
-        try {
-          const response = await fetch(realPath);
-          if (response.ok) {
-            const text = await response.text();
-            const renderedText = renderMarkdownToTerminal(text);
-            renderedText.split('\n').forEach(line => term.writeln(line));
-          } else {
-            term.writeln(`cat: ${filePath}: Cannot read file (error ${
-                response.status})`);
-          }
-        } catch (error) {
-          term.writeln(`cat: ${filePath}: Network error`);
-        }
+      if (fileNode && fileNode.type === 'file' && fileNode.content) {
+        const renderedText = renderMarkdownToTerminal(fileNode.content);
+        renderedText.split('\n').forEach(line => term.writeln(line));
       } else {
-        term.writeln(
-            `cat: ${filePath || ''}: File not found or is a directory`);
+        term.writeln(`cat: ${
+            filePath ||
+            ''}: File not found, is a directory, or has no content`);
       }
       break;
     case 'cd':

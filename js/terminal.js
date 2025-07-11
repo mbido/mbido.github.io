@@ -1,6 +1,3 @@
-import {executeCommand} from './commands.js';
-import {getDirContent, resolvePath} from './filesystem.js';
-
 document.addEventListener('DOMContentLoaded', () => {
   const term = new Terminal({
     cursorBlink: true,

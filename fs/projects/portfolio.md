@@ -15,6 +15,3 @@ This project is my personal portfolio, designed as an interactive terminal exper
 #### GitHub Repository:
 You can find the source code for this project on GitHub:
 [https://github.com/yourusername/portfolio-terminal](https://github.com/yourusername/portfolio-terminal) (This is a placeholder link)
-
-##### Test
-###### test2

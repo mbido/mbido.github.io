@@ -1,4 +1,4 @@
-export function renderMarkdownToTerminal(markdown) {
+function renderMarkdownToTerminal(markdown) {
   let rendered = markdown;
 
   // Headers (e.g., # Header, ## Subheader) - Gradient colors for better
