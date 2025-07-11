@@ -29,8 +29,36 @@ document.addEventListener('DOMContentLoaded', () => {
     term.write(getPrompt());
   }
 
-  term.writeln('Welcome to my terminal portfolio!');
-  term.writeln('Type `help` to see the list of available commands.');
+  term.writeln('\x1b[1;36m');
+  term.writeln('');
+  term.writeln(
+      '  ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗');
+  term.writeln(
+      '  ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝');
+  term.writeln(
+      '  ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ');
+  term.writeln(
+      '  ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ');
+  term.writeln(
+      '  ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗');
+  term.writeln(
+      '   ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝');
+  term.writeln('\x1b[0m');
+  term.writeln('');
+  term.writeln(
+      '\x1b[1;35m  ╭───────────────────────────────────────────────╮\x1b[0m');
+  term.writeln(
+      '\x1b[1;35m  │\x1b[0m\x1b[1;33m      ★ \x1b[0m\x1b[1mMatthieu Bidault\'s Portfolio\x1b[0m\x1b[1;33m ★      \x1b[0m\x1b[1;35m    │\x1b[0m');
+  term.writeln(
+      '\x1b[1;35m  ╰───────────────────────────────────────────────╯\x1b[0m');
+  term.writeln('');
+  term.writeln(
+      '\x1b[3mType `help` to see the list of available commands.\x1b[0m');
+  term.writeln('');
+
+  printPrompt();
+  term.writeln('tree');
+  executeCommand(term, 'tree', currentPath);
   printPrompt();
 
   term.onKey(async ({key, domEvent}) => {
@@ -38,16 +66,25 @@ document.addEventListener('DOMContentLoaded', () => {
         !domEvent.altKey && !domEvent.ctrlKey && !domEvent.metaKey;
 
     if (domEvent.key === 'Enter') {
-      if (currentCommand.trim() !== '') {
+      if (currentCommand.trim() === 'clear') {
+        currentCommand = '';  // Reset currentCommand first
+        term.write(
+            '\x1b[2K\r');  // Clear current line and move cursor to beginning
+        term.clear();      // Clear screen and move cursor to home
+        // term.writeln('');  // Add a new line after clearing
+        printPrompt();
+      } else if (currentCommand.trim() !== '') {
         commandHistory.unshift(currentCommand);
         historyIndex = -1;
         term.writeln('');
         currentPath = await executeCommand(term, currentCommand, currentPath);
+        currentCommand = '';
+        printPrompt();
       } else {
         term.writeln('');
+        currentCommand = '';
+        printPrompt();
       }
-      currentCommand = '';
-      printPrompt();
     } else if (domEvent.key === 'Backspace') {
       if (currentCommand.length > 0) {
         term.write('\b \b');

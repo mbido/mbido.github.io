@@ -92,9 +92,6 @@ async function executeCommand(term, command, currentPath) {
         term.writeln('tree: Cannot display tree from this location.');
       }
       break;
-    case 'clear':
-      term.clear();
-      break;
     default:
       term.writeln(`${cmd}: command not found`);
       break;
