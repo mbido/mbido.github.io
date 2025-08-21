@@ -1,7 +1,7 @@
 const filesystem = {
   'about.md': {type: 'file'},
   'skills.md': {type: 'file'},
-  'projects': {type: 'directory', children: {'portfolio.md': {type: 'file'}}}
+  'projects': {type: 'directory', children: {'portfolio.md': {type: 'file'}, 'perturbed-oil-and-vinegar-signature-scheme.md': {type: 'file'}}}
 };
 
 function resolvePath(path, currentPath) {

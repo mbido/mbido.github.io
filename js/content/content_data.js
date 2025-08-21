@@ -39,19 +39,41 @@ I am currently pursuing a Master's degree in Cryptography, High-Performance Comp
 `;
 window.markdownContent['projects/portfolio.md'] = `# Portfolio Terminal
 
-This project is my personal portfolio, designed as an interactive terminal experience. It allows users to navigate through my skills, projects, and information about me using familiar command-line interface commands.
+This project is a fun way to present my skills, who i am in a terminal like environement.
+It uses a bit of web technology with Xterm.js which help a lot doing the terminal emulation.
 
 ## Key Features:
 - **Interactive CLI**: Explore content using commands like \`ls\`, \`cat\`, \`cd\`, \`tree\`.
 - **Virtual File System**: Content is structured like a file system for an immersive experience.
-- **Dynamic Content Loading**: Mimics real terminal behavior by fetching content on demand.
-- **Responsive Design**: Accessible and functional across various devices.
 
-### Technologies Used:
-- HTML, CSS, JavaScript (Vanilla)
+## Technologies Used:
+- HTML, CSS, JavaScript
 - Xterm.js for terminal emulation
+- Python for compiling Markdown pages to static Javascript files.
 
-#### GitHub Repository:
+## GitHub Repository:
 You can find the source code for this project on GitHub:
-[https://github.com/yourusername/portfolio-terminal](https://github.com/yourusername/portfolio-terminal) (This is a placeholder link)
+[https://github.com/mbido/mbido.github.io](https://github.com/mbido/mbido.github.io)
+`;
+window
+    .markdownContent['projects/perturbed-oil-and-vinegar-signature-scheme.md'] =
+    `# Perturbed Oil and Vinegar Signature Schemes
+
+SageMath implementation and study of the "Oil and Vinegar" (OV) and perturbed "OV $\widehat{+}$" post-quantum signature schemes.
+
+This project was created for a Master's research course.
+
+## What's Inside
+
+- **\`src/\`**: SageMath implementations.
+    - \`OV/\`: The classic OV scheme, including the Kipnis-Shamir key forgery attack.
+    - \`OV+/\`: The perturbed OV$hat(+)$ scheme, designed to be more secure.
+- **\`report/\`**: A detailed report (\`report.typ\`) with security analysis, complexity, and performance benchmarks.
+- **\`articles/\`**: The research papers this project is based on.
+
+
+## GitHub Repository:
+You can find this project on GitHub:
+[https://github.com/mbido/Perturbed-oil-and-vinegar-signature-scheme](https://github.com/mbido/Perturbed-oil-and-vinegar-signature-scheme)
+
 `;

@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   term.writeln(
       '\x1b[1;35m  ╭───────────────────────────────────────────────╮\x1b[0m');
   term.writeln(
-      '\x1b[1;35m  │\x1b[0m\x1b[1;33m      ★ \x1b[0m\x1b[1mMatthieu Bidault\'s Portfolio\x1b[0m\x1b[1;33m ★      \x1b[0m\x1b[1;35m    │\x1b[0m');
+      '\x1b[1;35m  │\x1b[0m\x1b[1;33m      ★ \x1b[0m\x1b[1mMatthieu Bidault - Portfolio\x1b[0m\x1b[1;33m ★      \x1b[0m\x1b[1;35m    │\x1b[0m');
   term.writeln(
       '\x1b[1;35m  ╰───────────────────────────────────────────────╯\x1b[0m');
   term.writeln('');
