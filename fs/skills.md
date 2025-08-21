@@ -20,8 +20,8 @@
 
 # Soft Skills
 
-- **Analytical thinking** – strong ability to deconstruct problems
-- **Attention to detail** – thorough and precise in implementation
-- **Autonomy** – capable of working independently
-- **Creativity** – innovative approach to problem-solving
-- **Patience and perseverance** – able to tackle complex, long-term challenges
+- **Analytical thinking** 
+- **Attention to detail**
+- **Autonomy**
+- **Creativity**
+- **Patience and perseverance**
