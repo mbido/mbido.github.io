@@ -1,4 +1,4 @@
-console.log(`Terminal script loaded. Version: 1.1.0`);
+console.log(`Terminal script loaded. Version: 1.1.1`);
 
 document.addEventListener('DOMContentLoaded', () => {
   const term = new Terminal({
