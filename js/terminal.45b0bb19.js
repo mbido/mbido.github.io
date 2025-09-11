@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('resize', () => fitAddon.fit());
 
+  term.element.addEventListener('paste', (e) => {
+    const paste = e.clipboardData.getData('text');
+    currentCommand += paste;
+    term.write(paste);
+  });
+
   let currentPath = '/';
   let commandHistory = [];
   let historyIndex = -1;
@@ -148,10 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  term.onPaste((data) => {
-    currentCommand += data;
-    term.write(data);
-  });
+  
 
   function clearCurrentCommand() {
     const len = currentCommand.length;
