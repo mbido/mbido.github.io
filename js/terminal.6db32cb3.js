@@ -21,40 +21,39 @@ document.addEventListener('DOMContentLoaded', () => {
   let historyIndex = -1;
   let currentCommand = '';
 
+  const COLORS = {
+    RESET: '\x1b[0m',
+    BRIGHT_GREEN: '\x1b[1;32m',
+    BRIGHT_BLUE: '\x1b[1;34m',
+    BRIGHT_CYAN: '\x1b[1;36m',
+    BRIGHT_MAGENTA: '\x1b[1;35m',
+    BRIGHT_YELLOW: '\x1b[1;33m',
+    ITALIC: '\x1b[3m',
+  };
+
   function getPrompt() {
-    return `\x1b[1;32mguest@MyPortfolio\x1b[0m:\x1b[1;34m${
-        currentPath}\x1b[0m$ `;
+    return `${COLORS.BRIGHT_GREEN}guest@MyPortfolio${COLORS.RESET}:${COLORS.BRIGHT_BLUE}${
+        currentPath}${COLORS.RESET}$ `;
   }
 
   function printPrompt() {
     term.write(getPrompt());
   }
 
-  term.writeln('\x1b[1;36m');
+  printColoredText(`
+  ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
+  ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
+  ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
+  ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
+  ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗
+   ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
+`, COLORS.BRIGHT_CYAN);
   term.writeln('');
-  term.writeln(
-      '  ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗');
-  term.writeln(
-      '  ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝');
-  term.writeln(
-      '  ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ');
-  term.writeln(
-      '  ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ');
-  term.writeln(
-      '  ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗');
-  term.writeln(
-      '   ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝');
-  term.writeln('\x1b[0m');
+  printColoredText(`  ╭───────────────────────────────────────────────╮
+  │      ★ ${COLORS.BRIGHT_YELLOW}Matthieu Bidault - Portfolio${COLORS.RESET}${COLORS.BRIGHT_MAGENTA} ★          │
+  ╰───────────────────────────────────────────────╯`, COLORS.BRIGHT_MAGENTA);
   term.writeln('');
-  term.writeln(
-      '\x1b[1;35m  ╭───────────────────────────────────────────────╮\x1b[0m');
-  term.writeln(
-      '\x1b[1;35m  │\x1b[0m\x1b[1;33m      ★ \x1b[0m\x1b[1mMatthieu Bidault - Portfolio\x1b[0m\x1b[1;33m ★      \x1b[0m\x1b[1;35m    │\x1b[0m');
-  term.writeln(
-      '\x1b[1;35m  ╰───────────────────────────────────────────────╯\x1b[0m');
-  term.writeln('');
-  term.writeln(
-      '\x1b[3mType `help` to see the list of available commands.\x1b[0m');
+  printColoredText('Type `help` to see the list of available commands.', COLORS.ITALIC);
   term.writeln('');
 
   printPrompt();
@@ -201,5 +200,15 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < len; i++) {
       term.write('\b \b');
     }
+  }
+
+  // Nouvelle fonction pour imprimer du texte coloré avec gestion des retours à la ligne
+  function printColoredText(text, colorCode) {
+    text.split('\n').forEach((line, index, array) => {
+      term.write(`${colorCode}${line}\x1b[0m`);
+      if (index < array.length - 1) {
+        term.writeln(''); // Ajouter un retour à la ligne pour chaque ligne sauf la dernière
+      }
+    });
   }
 });
