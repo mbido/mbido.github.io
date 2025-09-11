@@ -1,5 +1,3 @@
-console.log(`Terminal script loaded. Version: 1.1.2`);
-
 document.addEventListener('DOMContentLoaded', () => {
   const term = new Terminal({
     cursorBlink: true,
