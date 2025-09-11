@@ -148,6 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  term.onPaste((data) => {
+    currentCommand += data;
+    term.write(data);
+  });
+
   function clearCurrentCommand() {
     const len = currentCommand.length;
     for (let i = 0; i < len; i++) {
