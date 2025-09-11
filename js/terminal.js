@@ -1,3 +1,6 @@
+const scriptVersion = 'v' + new Date().getTime();
+console.log(`Terminal script loaded. Version: ${scriptVersion}`);
+
 document.addEventListener('DOMContentLoaded', () => {
   const term = new Terminal({
     cursorBlink: true,
