@@ -72,6 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle data input (for paste events)
   term.onData(async (data) => {
+    // Ignore arrow key sequences from xterm.js
+    if (data === '\x1b[A' || data === '\x1b[B' || data === '\x1b[C' ||
+        data === '\x1b[D') {
+      return;
+    }
+
     // Handle paste events (multiple characters)
     if (data.length > 1) {
       const filteredText = data.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
@@ -79,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       term.write(filteredText);
       return;
     }
-    
+
     // Handle single character input normally via onKey
   });
 
@@ -97,8 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const printable =
-        !domEvent.altKey && !domEvent.ctrlKey && !domEvent.metaKey;
+    const printable = !domEvent.altKey && !domEvent.ctrlKey &&
+        !domEvent.metaKey && domEvent.key !== 'ArrowUp' &&
+        domEvent.key !== 'ArrowDown' && domEvent.key !== 'ArrowLeft' &&
+        domEvent.key !== 'ArrowRight';
 
     if (domEvent.key === 'Enter') {
       if (currentCommand.trim() === 'clear') {
@@ -107,8 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
         term.clear();
         printPrompt();
       } else if (currentCommand.trim() !== '') {
-        commandHistory.unshift(currentCommand);
-        historyIndex = -1;
+        // Add to history only if it's different from the last command
+        if (commandHistory.length === 0 ||
+            commandHistory[0] !== currentCommand) {
+          commandHistory.unshift(currentCommand);
+        }
+        historyIndex = -1; // Reset history index after new command
         term.writeln('');
         currentPath = await executeCommand(term, currentCommand, currentPath);
         currentCommand = '';
@@ -124,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentCommand = currentCommand.slice(0, -1);
       }
     } else if (domEvent.key === 'ArrowUp') {
+      domEvent.preventDefault(); // Empêche l'ajout de caractères ANSI
       if (historyIndex < commandHistory.length - 1) {
         historyIndex++;
         clearCurrentCommand();
@@ -131,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         term.write(currentCommand);
       }
     } else if (domEvent.key === 'ArrowDown') {
+      domEvent.preventDefault(); // Empêche l'ajout de caractères ANSI
       if (historyIndex > 0) {
         historyIndex--;
         clearCurrentCommand();
