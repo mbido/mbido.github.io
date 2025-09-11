@@ -16,12 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('resize', () => fitAddon.fit());
 
-  term.element.addEventListener('paste', (e) => {
-    const paste = e.clipboardData.getData('text');
-    currentCommand += paste;
-    term.write(paste);
-  });
-
   let currentPath = '/';
   let commandHistory = [];
   let historyIndex = -1;
@@ -69,6 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
   printPrompt();
 
   term.onKey(async ({key, domEvent}) => {
+    // Handle paste
+    if (domEvent.ctrlKey && domEvent.key === 'v' && !domEvent.altKey &&
+        !domEvent.metaKey) {
+      navigator.clipboard.readText().then(text => {
+        currentCommand += text;
+        term.write(text);
+      });
+      return;
+    }
+
     const printable =
         !domEvent.altKey && !domEvent.ctrlKey && !domEvent.metaKey;
 
