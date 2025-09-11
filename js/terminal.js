@@ -1,5 +1,4 @@
-const scriptVersion = 'v' + new Date().getTime();
-console.log(`Terminal script loaded. Version: ${scriptVersion}`);
+console.log(`Terminal script loaded. Version: 1.1.0`);
 
 document.addEventListener('DOMContentLoaded', () => {
   const term = new Terminal({
@@ -65,14 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
   executeCommand(term, 'tree', currentPath);
   printPrompt();
 
+  // Handle paste functionality
+  async function handlePaste(text) {
+    // Filter out non-printable characters except newlines and tabs
+    const filteredText = text.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
+    currentCommand += filteredText;
+    term.write(filteredText);
+  }
+
+  // Handle keyboard events
   term.onKey(async ({key, domEvent}) => {
-    // Handle paste
-    if (domEvent.ctrlKey && domEvent.key === 'v' && !domEvent.altKey &&
-        !domEvent.metaKey) {
-      navigator.clipboard.readText().then(text => {
-        currentCommand += text;
-        term.write(text);
-      });
+    // Handle paste keyboard shortcuts (Ctrl+V and Cmd+V)
+    if ((domEvent.ctrlKey || domEvent.metaKey) && domEvent.key === 'v') {
+      domEvent.preventDefault();
+      try {
+        const text = await navigator.clipboard.readText();
+        await handlePaste(text);
+      } catch (err) {
+        console.warn('Failed to read clipboard:', err);
+      }
       return;
     }
 
@@ -160,6 +170,27 @@ document.addEventListener('DOMContentLoaded', () => {
       term.write(key);
     }
   });
+
+  // Handle context menu paste
+  const terminalElement = document.getElementById('terminal');
+  if (terminalElement) {
+    terminalElement.addEventListener('paste', async (event) => {
+      event.preventDefault();
+      const text = event.clipboardData.getData('text/plain');
+      await handlePaste(text);
+    });
+
+    // Also handle context menu paste
+    terminalElement.addEventListener('contextmenu', async (event) => {
+      event.preventDefault();
+      try {
+        const text = await navigator.clipboard.readText();
+        await handlePaste(text);
+      } catch (err) {
+        console.warn('Failed to read clipboard from context menu:', err);
+      }
+    });
+  }
 
   
 
