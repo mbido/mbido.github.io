@@ -2,62 +2,79 @@
 
 This project is a personal portfolio presented as an interactive terminal. It's a fun way to explore my work and skills through a command-line interface.
 
+Live at **[mbido.fr](https://mbido.fr/)**.
+
 ## ✨ Features
 
 - **Interactive CLI**: Navigate using familiar terminal commands.
-- **Virtual File System**: Explore projects, skills, and information about me as if browsing a file system.
+- **Virtual File System**: Explore projects, skills, and information about me as if browsing a file system. The tree is generated from `fs/`, so it can never drift from the actual content.
 - **Static Content**: All content is embedded directly within the JavaScript, allowing the site to function entirely client-side without a server.
-- **Responsive Design**: Works on various screen sizes.
-- **Command Enhancements**: Includes command history (arrow keys) and tab autocompletion.
+- **Line editing**: Command history (↑/↓), tab completion, caret movement (←/→, Home/End), and the usual `Ctrl+A/E/U/W/C/L` shortcuts.
+- **Responsive**: A compact header and a tap-friendly shortcut bar on phones; output wraps to the terminal width on word boundaries.
+- **Works without JavaScript**: a plain-HTML fallback of the same content is generated into `index.html` for crawlers and no-JS visitors.
 
 ## 🛠️ Technologies Used
 
 - **HTML5**: Structure
 - **CSS3**: Styling
 - **JavaScript (Vanilla)**: Interactivity
-- **Xterm.js**: Terminal emulation
+- **Xterm.js**: Terminal emulation (pinned to an exact version, not `@latest`)
+- **Python 3**: Build script, no third-party packages
 
 ## 🚀 Getting Started
 
-### Building Content
+### Building
 
-Before running or deploying the site, you need to convert the markdown content (`.md` files in the `fs/` directory) into JavaScript files. This is done using a Python script:
+The markdown under `fs/` is compiled into JavaScript before the site can run:
 
-1.  Ensure you have Python installed.
-2.  Open your terminal in the project's root directory.
-3.  Run the command: `python3 build_content.py`
+```bash
+python3 build_content.py
+```
 
-This will generate the necessary JavaScript content data file (`js/content/content_data.js`).
+This single command:
+
+1. Generates `js/content/content_data.js` with the file contents **and** the directory tree.
+2. Regenerates the `<noscript>` fallback inside `index.html`.
+3. Appends a content hash (`?v=…`) to every local `js/*.js` and `style.css` reference for cache busting.
+
+Run it after any change under `fs/`, `js/`, or `style.css`.
+
+### Adding content
+
+Drop a `.md` file anywhere under `fs/` and re-run the build. It shows up in `ls`, `tree`, and tab completion automatically — no JavaScript to edit.
 
 ### Local Development
 
-To run this portfolio locally, simply open the `index.html` file in your web browser. All content is embedded, so no local server is required.
+Open `index.html` directly in a browser, or serve the folder:
+
+```bash
+python3 -m http.server 8000
+```
+
+### Tests
+
+```bash
+node test/terminal.test.js
+```
+
+The suite loads the real `js/` sources against a miniature terminal emulator and covers the key handling, every command, the markdown renderer, and path resolution.
 
 ### Deployment on GitHub Pages
 
-This project is designed for static hosting, making it ideal for GitHub Pages.
-
-1.  **Create a GitHub Repository**: If you haven't already, create a new public repository on GitHub (e.g., `your-username.github.io` for a user page, or any name for a project page).
-2.  **Push Your Code**: Push all the project files (including `index.html`, `style.css`, `js/`, `fs/`, `build_content.py`, and the generated `js/content/content_data.js`) to your GitHub repository. Remember to run `python3 build_content.py` before pushing to ensure your content is up-to-date.
-3.  **Configure GitHub Pages**:
-    *   Go to your repository on GitHub.
-    *   Click on "Settings" (⚙️).
-    *   In the left sidebar, click on "Pages".
-    *   Under "Build and deployment", select "Deploy from a branch".
-    *   Choose the branch you want to deploy from (e.g., `main` or `master`) and the `/ (root)` folder.
-    *   Click "Save".
-4.  **Access Your Site**: Your site will be available at `https://your-username.github.io/your-repository-name/` (or `https://your-username.github.io/` for a user page) within a few minutes.
+The repository is served directly by GitHub Pages from the `main` branch, root folder, with the custom domain in `CNAME`. Remember to run `python3 build_content.py` and commit the generated files before pushing.
 
 ## 📚 How to Use
 
 Upon loading, you'll see a terminal prompt. Type commands to interact:
 
 - `help`: List all available commands.
-- `ls`: List files and directories in the current location.
-- `cat [filename]`: Display file content (e.g., `cat about.md`).
-- `cd [directory]`: Change directory (e.g., `cd projects`).
+- `ls [dir]`: List files and directories.
+- `cat [file]`: Display file content (e.g., `cat about.md`).
+- `cd [dir]`: Change directory (e.g., `cd projects`).
 - `pwd`: Print current working directory.
 - `tree`: Display the virtual file system structure.
+- `whoami`: Short introduction.
+- `contact`: How to reach me.
 - `clear`: Clear the terminal screen.
 
 ## 📄 License

@@ -1,105 +1,224 @@
-import os
 import hashlib
+import io
+import json
+import os
 import re
+
+FS_DIR = "fs"
+CONTENT_DATA = "js/content/content_data.js"
+
+# Hand-written sources. Order matters: it is the load order in index.html.
+JS_SOURCES = [
+    CONTENT_DATA,
+    "js/filesystem.js",
+    "js/markdownRenderer.js",
+    "js/commands.js",
+    "js/terminal.js",
+]
+
+# Everything else index.html references and that must not be served stale.
+OTHER_ASSETS = ["style.css"]
+
+
+def collect(directory):
+    """Walks `directory` and returns (tree, contents).
+
+    tree mirrors the on-disk layout in the shape js/filesystem.js expects, so
+    adding a markdown file under fs/ is all it takes for it to show up in `ls`
+    and `tree`. contents maps each web-style relative path to its raw markdown.
+    """
+    tree = {}
+    contents = {}
+
+    entries = sorted(os.listdir(directory))
+    files = [e for e in entries if e.endswith(".md") and
+             os.path.isfile(os.path.join(directory, e))]
+    subdirs = [e for e in entries if os.path.isdir(os.path.join(directory, e))]
+
+    for name in files:
+        path = os.path.join(directory, name)
+        tree[name] = {"type": "file"}
+        relative = os.path.relpath(path, FS_DIR).replace("\\", "/")
+        with io.open(path, encoding="utf-8") as handle:
+            contents[relative] = handle.read()
+
+    for name in subdirs:
+        child_tree, child_contents = collect(os.path.join(directory, name))
+        tree[name] = {"type": "directory", "children": child_tree}
+        contents.update(child_contents)
+
+    return tree, contents
+
+
+def escape(text):
+    return (text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def inline_html(text):
+    out = escape(text)
+    out = re.sub(r"`([^`]+)`", r"<code>\1</code>", out)
+    out = re.sub(
+        r"\[([^\]]*)\]\(([^)]+)\)",
+        lambda m: '<a href="%s">%s</a>' % (m.group(2), m.group(1) or m.group(2)),
+        out)
+    out = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", out)
+    out = re.sub(r"__([^_]+)__", r"<strong>\1</strong>", out)
+    out = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", out)
+    return out
+
+
+def markdown_to_html(markdown):
+    """Small block-level converter for the <noscript> fallback.
+
+    Deliberately minimal: it only needs to handle the subset of markdown used
+    under fs/, and it exists so crawlers and no-JS visitors see the real
+    content instead of an empty <div>.
+    """
+    html = []
+    # One entry per open <ul>, holding the source indent that opened it. A
+    # stack copes with any indent step, unlike dividing the indent by a
+    # fixed width.
+    indents = []
+    paragraph = []
+    in_fence = False
+
+    def flush_paragraph():
+        if paragraph:
+            html.append("<p>%s</p>" % inline_html(" ".join(paragraph)))
+            del paragraph[:]
+
+    def close_lists():
+        while indents:
+            html.append("</li>")
+            html.append("</ul>")
+            indents.pop()
+
+    for raw in markdown.split("\n"):
+        if raw.strip().startswith("```"):
+            in_fence = not in_fence
+            flush_paragraph()
+            close_lists()
+            html.append("<pre>" if in_fence else "</pre>")
+            continue
+        if in_fence:
+            html.append(escape(raw))
+            continue
+
+        if raw.strip() == "":
+            flush_paragraph()
+            close_lists()
+            continue
+
+        heading = re.match(r"^(#{1,6})\s+(.*)$", raw)
+        if heading:
+            flush_paragraph()
+            close_lists()
+            # Shift down one level: the page already has a single <h1>.
+            level = min(len(heading.group(1)) + 1, 6)
+            html.append("<h%d>%s</h%d>" % (level, inline_html(heading.group(2)),
+                                           level))
+            continue
+
+        bullet = re.match(r"^(\s*)[*-]\s+(.*)$", raw)
+        if bullet:
+            flush_paragraph()
+            indent = len(bullet.group(1))
+            if not indents or indent > indents[-1]:
+                # A nested list belongs inside the enclosing <li>, so the
+                # parent item stays open.
+                html.append("<ul>")
+                indents.append(indent)
+            else:
+                while len(indents) > 1 and indent < indents[-1]:
+                    html.append("</li>")
+                    html.append("</ul>")
+                    indents.pop()
+                html.append("</li>")
+            html.append("<li>%s" % inline_html(bullet.group(2)))
+            continue
+
+        close_lists()
+        paragraph.append(raw.strip())
+
+    flush_paragraph()
+    close_lists()
+    if in_fence:
+        html.append("</pre>")
+    return "\n".join(html)
 
 
 def build():
-    """
-    Génère le contenu JS à partir des fichiers markdown et versionne tous les
-    fichiers JS pour le cache busting.
-    """
-    # --- Étape 1: Générer le contenu dynamique (content_data.js) ---
-    fs_dir = "fs"
-    js_content_dir = "js/content"
-    os.makedirs(js_content_dir, exist_ok=True)
-    content_data_path = os.path.join(js_content_dir, "content_data.js")
+    tree, contents = collect(FS_DIR)
 
-    content_data_js = "window.markdownContent = window.markdownContent || {};\n\n"
-    for root, _, files in os.walk(fs_dir):
-        for file_name in files:
-            if file_name.endswith(".md"):
-                md_path = os.path.join(root, file_name)
-                # S'assurer que les chemins sont au format web (avec /)
-                relative_md_path = os.path.relpath(md_path, fs_dir).replace("\\", "/")
-                with open(md_path, "r", encoding="utf-8") as f:
-                    content = f.read().replace("`", "\\`")
-                content_data_js += (
-                    f"window.markdownContent['{relative_md_path}'] = `{content}`;\n"
-                )
-
-    with open(content_data_path, "w", encoding="utf-8") as f:
-        f.write(content_data_js)
-    print(f"✅ Fichier '{content_data_path}' généré.")
-
-    # --- Étape 2: Versionner tous les fichiers JS cibles ---
-    files_to_version = [
-        content_data_path,
-        "js/filesystem.js",
-        "js/markdownRenderer.js",
-        "js/commands.js",
-        "js/terminal.js",
+    os.makedirs(os.path.dirname(CONTENT_DATA), exist_ok=True)
+    lines = [
+        "// Generated by build_content.py - do not edit by hand.",
+        "window.filesystemTree = %s;" % json.dumps(tree, indent=2,
+                                                   ensure_ascii=False),
+        "",
+        "window.markdownContent = {};",
     ]
+    for relative in sorted(contents):
+        # json.dumps gives a correctly escaped JS string literal, which avoids
+        # the backslash/backtick pitfalls of hand-rolled template literals.
+        lines.append("window.markdownContent[%s] = %s;" % (
+            json.dumps(relative, ensure_ascii=False),
+            json.dumps(contents[relative], ensure_ascii=False),
+        ))
 
-    # Dictionnaire pour stocker les chemins mis à jour
-    path_mappings = {}
-    newly_versioned_files = set()
+    with io.open(CONTENT_DATA, "w", encoding="utf-8") as handle:
+        handle.write("\n".join(lines) + "\n")
+    print("[ok] %s generated (%d files)" % (CONTENT_DATA, len(contents)))
 
-    for original_path in files_to_version:
-        original_path = original_path.replace("\\", "/")
+    # Cache busting via query string: no duplicated files to commit, and the
+    # browser still refetches whenever the bytes change.
+    digests = {}
+    for path in JS_SOURCES + OTHER_ASSETS:
         try:
-            with open(original_path, "rb") as f:
-                content = f.read()
-                content_hash = hashlib.md5(content).hexdigest()[:8]
-
-                path_parts = os.path.splitext(original_path)
-                versioned_path = f"{path_parts[0]}.{content_hash}{path_parts[1]}"
-
-                # Créer le nouveau fichier
-                with open(versioned_path, "wb") as new_f:
-                    new_f.write(content)
-
-                path_mappings[original_path] = versioned_path
-                newly_versioned_files.add(versioned_path)
-
+            with io.open(path, "rb") as handle:
+                digests[path] = hashlib.md5(handle.read()).hexdigest()[:8]
         except FileNotFoundError:
-            print(f"⚠️ Fichier non trouvé : {original_path}. Ignoré.")
+            print("[warn] missing %s, skipped" % path)
 
-    print("✅ Fichiers JS versionnés avec succès.")
+    with io.open("index.html", encoding="utf-8") as handle:
+        html = handle.read()
 
-    # --- Étape 3: Mettre à jour index.html ---
-    with open("index.html", "r+", encoding="utf-8") as f:
-        html_content = f.read()
+    # Regenerate the no-JS / crawler fallback so it can never drift from fs/.
+    ordered = sorted(contents, key=lambda p: (p.count("/"), p))
+    fallback = "\n".join(markdown_to_html(contents[p]) for p in ordered)
+    html, count = re.subn(
+        r"(<!-- BEGIN GENERATED FALLBACK -->)(.*?)(<!-- END GENERATED FALLBACK -->)",
+        lambda m: "%s\n%s\n%s" % (m.group(1), fallback, m.group(3)),
+        html,
+        flags=re.DOTALL)
+    if count:
+        print("[ok] noscript fallback regenerated")
+    else:
+        print("[warn] fallback markers not found in index.html")
 
-        for original, versioned in path_mappings.items():
-            # Utiliser une regex pour être sûr de ne remplacer que le bon chemin
-            # et éviter de remplacer une partie d'un autre nom de fichier.
-            # La regex cherche le chemin original, potentiellement déjà versionné.
-            base, ext = os.path.splitext(original)
-            pattern = re.compile(
-                rf'"{re.escape(base)}(\.[a-f0-9]{{8}})?{re.escape(ext)}"'
-            )
-            replacement = f'"{versioned}"'
-            html_content = pattern.sub(replacement, html_content)
+    for path, digest in digests.items():
+        base, ext = os.path.splitext(path)
+        # Matches the current form and the legacy js/name.<hash>.js form.
+        pattern = re.compile(
+            r'"%s(?:\.[a-f0-9]{8})?%s(?:\?v=[a-f0-9]+)?"'
+            % (re.escape(base), re.escape(ext)))
+        html, count = pattern.subn('"%s?v=%s"' % (path, digest), html)
+        if count == 0:
+            print("[warn] %s is not referenced by index.html" % path)
 
-        f.seek(0)
-        f.write(html_content)
-        f.truncate()
-    print("✅ index.html mis à jour.")
+    with io.open("index.html", "w", encoding="utf-8") as handle:
+        handle.write(html)
+    print("[ok] index.html updated")
 
-    # --- Étape 4: Nettoyer les anciens fichiers versionnés ---
-    all_versioned_dirs = {os.path.dirname(p) for p in newly_versioned_files}
-    for directory in all_versioned_dirs:
-        for filename in os.listdir(directory):
-            # Vérifier si un fichier a un hash dans son nom mais n'est pas dans la liste des fichiers actuels
-            if re.match(r".*\.[a-f0-9]{8}\.js$", filename):
-                full_path = os.path.join(directory, filename).replace("\\", "/")
-                if full_path not in newly_versioned_files:
-                    os.remove(full_path)
-                    print(f"🗑️ Ancien fichier supprimé : {full_path}")
-
-    # Supprimer le content_data.js non-versionné car il n'est plus utilisé
-    if os.path.exists(content_data_path):
-        os.remove(content_data_path)
+    # Drop the versioned duplicates the previous build scheme left behind.
+    removed = 0
+    for root, _, names in os.walk("js"):
+        for name in names:
+            if re.match(r".*\.[a-f0-9]{8}\.js$", name):
+                os.remove(os.path.join(root, name))
+                removed += 1
+    if removed:
+        print("[ok] removed %d stale versioned file(s)" % removed)
 
 
 if __name__ == "__main__":

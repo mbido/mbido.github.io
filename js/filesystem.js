@@ -1,14 +1,12 @@
-const filesystem = {
-  'about.md': {type: 'file'},
-  'skills.md': {type: 'file'},
-  'projects': {type: 'directory', children: {'portfolio.md': {type: 'file'}, 'perturbed-oil-and-vinegar-signature-scheme.md': {type: 'file'}, 'MITM-Attack-on-HPC-hardwar.md': {type: 'file'}}}
-};
+// The tree is generated from the fs/ directory by build_content.py, so adding
+// a markdown file there is enough for it to appear in `ls` and `tree`.
+const filesystem = window.filesystemTree || {};
 
 function resolvePath(path, currentPath) {
   if (!path) return currentPath;
-  if (path.startsWith('/')) return path;
 
-  const parts =
+  const parts = path.startsWith('/') ?
+      [] :
       (currentPath === '/' ? '' : currentPath).split('/').filter(p => p);
   const newParts = path.split('/').filter(p => p);
 
@@ -28,23 +26,19 @@ function getNodeFromPath(path, currentPath) {
   const resolvedPath = resolvePath(path, currentPath);
   const parts = resolvedPath.split('/').filter(p => p);
   let currentNode = filesystem;
-  for (const part of parts) {
-    if (currentNode[part] && currentNode[part].type === 'directory') {
-      currentNode = currentNode[part].children;
-    } else if (currentNode[part]) {
-      // If it's a file, attach the content from the global markdownContent
-      // object
-      if (currentNode[part].type === 'file') {
-        const fullPath = '/' + parts.join('/');
-        const relativePath = fullPath.substring(1);  // Remove leading slash
-        return {
-          ...currentNode[part],
-          content: window.markdownContent[relativePath]
-        };
-      }
-      return currentNode[part];
+
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    const entry = currentNode[part];
+    if (!entry) return null;
+
+    if (entry.type === 'directory') {
+      currentNode = entry.children;
     } else {
-      return null;
+      // A file cannot have children, so any remaining segment is a bad path.
+      if (i !== parts.length - 1) return null;
+      const relativePath = parts.join('/');
+      return {...entry, content: window.markdownContent[relativePath]};
     }
   }
   return {type: 'directory', children: currentNode};
@@ -52,5 +46,5 @@ function getNodeFromPath(path, currentPath) {
 
 function getDirContent(path, currentPath) {
   const node = getNodeFromPath(path, currentPath);
-  return node ? node.children : {};
+  return node && node.children ? node.children : {};
 }

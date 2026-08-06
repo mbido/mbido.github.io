@@ -3,23 +3,166 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Terminal Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Matthieu Bidault - Terminal Portfolio</title>
+    <meta name="description"
+        content="Interactive terminal portfolio of Matthieu Bidault, MSc student in Cryptography, High-Performance Computing and Algorithms at Sorbonne Université.">
+    <meta name="author" content="Matthieu Bidault">
+    <link rel="canonical" href="https://mbido.fr/">
     <link rel="icon" href="terminal-icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="https://unpkg.com/xterm@latest/css/xterm.css" />
-    <link rel="stylesheet" href="style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Matthieu Bidault">
+    <meta property="og:title" content="Matthieu Bidault - Terminal Portfolio">
+    <meta property="og:description"
+        content="Explore my projects and skills through a command line: cryptography, high-performance computing and algorithms.">
+    <meta property="og:url" content="https://mbido.fr/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Matthieu Bidault - Terminal Portfolio">
+    <meta name="twitter:description"
+        content="Explore my projects and skills through a command line: cryptography, high-performance computing and algorithms.">
+
+    <link rel="stylesheet" href="https://unpkg.com/xterm@5.3.0/css/xterm.css" />
+    <link rel="stylesheet" href="style.css?v=2eaf920a">
 </head>
 
 <body>
     <div id="terminal"></div>
 
-    <script src="https://unpkg.com/xterm@latest/lib/xterm.js"></script>
-    <script src="https://unpkg.com/xterm-addon-fit@latest/lib/xterm-addon-fit.js"></script>
-    <script src="js/content/content_data.29775d10.js"></script>
-    <script src="js/filesystem.c729b322.js"></script>
-    <script src="js/markdownRenderer.821f0327.js"></script>
-    <script src="js/commands.8cd89865.js"></script>
-    <script src="js/terminal.6db32cb3.js"></script>
+    <nav id="touchbar" aria-label="Command shortcuts" hidden>
+        <button type="button" data-cmd="help">help</button>
+        <button type="button" data-cmd="ls">ls</button>
+        <button type="button" data-cmd="tree">tree</button>
+        <button type="button" data-cmd="cd ..">cd ..</button>
+        <button type="button" data-cmd="whoami">whoami</button>
+        <button type="button" data-cmd="contact">contact</button>
+        <button type="button" data-cmd="clear">clear</button>
+    </nav>
+
+    <noscript>
+        <div id="fallback">
+            <h1>Matthieu Bidault</h1>
+            <p><strong>This portfolio is an interactive terminal and needs JavaScript.</strong>
+                Here is the same content as plain text.</p>
+            <!-- BEGIN GENERATED FALLBACK -->
+<h2>About me</h2>
+<p>I am Matthieu Bidault, a Master 2 (M2) student in Computer Science at Sorbonne Université.</p>
+<h3>My Master's program</h3>
+<p>I am currently pursuing a Master's degree in Cryptography, High-Performance Computing, and Algorithms (CCA). This program focuses on advanced topics in secure computing, efficient algorithm design, and leveraging high-performance systems.</p>
+<h3>My goals</h3>
+<p>I aim to complete my Master's degree and pursue a PhD that aligns with my interests. I particularly enjoy using high-performance computing as a tool and exploring the security and potential weaknesses of cryptographic systems.</p>
+<h2>Contact</h2>
+<p>The best way to reach me is by email.</p>
+<ul>
+<li><strong>Email</strong>: <a href="mailto:contact@mbido.fr">contact@mbido.fr</a>
+</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/mbido">github.com/mbido</a>
+</li>
+</ul>
+<p>I am interested in PhD opportunities in cryptography and high-performance computing, so feel free to get in touch.</p>
+<h2>Technical Skills</h2>
+<h3>Programming Languages</h3>
+<ul>
+<li><strong>C/C++</strong> – advanced, for algorithmic and high-performance applications
+</li>
+<li><strong>Python</strong> (including <strong>SageMath</strong>) – scripting, data analysis, and cryptographic algorithms
+</li>
+<li><strong>OCaml</strong> – functional programming
+</li>
+<li><strong>Java</strong> – object-oriented programming and academic projects
+</li>
+</ul>
+<h3>Web Technologies</h3>
+<ul>
+<li><strong>JavaScript</strong>, <strong>HTML</strong>, <strong>CSS</strong>
+</li>
+<li><strong>PHP</strong> – basic back-end development
+</li>
+</ul>
+<h3>Databases &amp; Query Languages</h3>
+<ul>
+<li><strong>SQL</strong> – relational database design and querying
+</li>
+</ul>
+<h3>Tools &amp; Platforms</h3>
+<ul>
+<li><strong>Git</strong> – version control for collaborative projects
+</li>
+<li><strong>Linux environments</strong> – development and system management  
+</li>
+<li><strong>Grid5000</strong> – hands-on experience running computations on HPC clusters
+</li>
+</ul>
+<h2>Soft Skills</h2>
+<ul>
+<li><strong>Analytical thinking</strong> 
+</li>
+<li><strong>Attention to detail</strong>
+</li>
+<li><strong>Autonomy</strong>
+</li>
+<li><strong>Creativity</strong>
+</li>
+<li><strong>Patience and perseverance</strong>
+</li>
+</ul>
+<h2>MITM Attack on HPC hardware</h2>
+<p>The goal of this project was to parallelize a meet in the middle sequential attack using MPI and OpenMP ona cluster.</p>
+<h3>Hardware</h3>
+<p>This project has been maid specifically for the <a href="https://www.grid5000.fr/w/Grid5000:Home">Grid5000 platform</a> but it can be modified very simply to be executed on any cluster architecture compatible with MPI and OpenMP.</p>
+<h3>Links</h3>
+<p><strong>Github</strong> : <a href="https://github.com/mbido/MITM-Attack-on-HPC-hardware">https://github.com/mbido/MITM-Attack-on-HPC-hardware</a> <strong>My report</strong> : <a href="https://github.com/mbido/MITM-Attack-on-HPC-hardware/blob/main/report/main.pdf">https://github.com/mbido/MITM-Attack-on-HPC-hardware/blob/main/report/main.pdf</a></p>
+<h2>Perturbed Oil and Vinegar Signature Schemes</h2>
+<p>SageMath implementation and study of the "Oil and Vinegar" (OV) and perturbed "OV^+" post-quantum signature schemes.</p>
+<p>This project was created for a Master's research course.</p>
+<h3>What's Inside</h3>
+<ul>
+<li><strong><code>src/</code></strong>: SageMath implementations.
+<ul>
+<li><code>OV/</code>: The classic OV scheme, including the Kipnis-Shamir key forgery attack.
+</li>
+<li><code>OV+/</code>: The perturbed OV^+ scheme, designed to be more secure.
+</li>
+</ul>
+</li>
+<li><strong><code>report/</code></strong>: A detailed report (<code>report.typ</code>) with security analysis, complexity, and performance benchmarks.
+</li>
+<li><strong><code>articles/</code></strong>: The research papers this project is based on.
+</li>
+</ul>
+<h3>GitHub Repository:</h3>
+<p>You can find the source code for this project on GitHub: <a href="https://github.com/mbido/Perturbed-oil-and-vinegar-signature-scheme">https://github.com/mbido/Perturbed-oil-and-vinegar-signature-scheme</a></p>
+<h2>Portfolio Terminal</h2>
+<p>This project is a fun way to present my skills, who i am in a terminal like environement. It uses a bit of web technology with Xterm.js which help a lot doing the terminal emulation.</p>
+<h3>Key Features:</h3>
+<ul>
+<li><strong>Interactive CLI</strong>: Explore content using commands like <code>ls</code>, <code>cat</code>, <code>cd</code>, <code>tree</code>.
+</li>
+<li><strong>Virtual File System</strong>: Content is structured like a file system for an immersive experience.
+</li>
+</ul>
+<h3>Technologies Used:</h3>
+<ul>
+<li>HTML, CSS, JavaScript
+</li>
+<li>Xterm.js for terminal emulation
+</li>
+<li>Python for compiling Markdown pages to static Javascript files.
+</li>
+</ul>
+<h3>GitHub Repository:</h3>
+<p>You can find the source code for this project on GitHub: <a href="https://github.com/mbido/mbido.github.io">https://github.com/mbido/mbido.github.io</a></p>
+<!-- END GENERATED FALLBACK -->
+        </div>
+    </noscript>
+
+    <script src="https://unpkg.com/xterm@5.3.0/lib/xterm.js"></script>
+    <script src="https://unpkg.com/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js"></script>
+    <script src="js/content/content_data.js?v=168bb6d6"></script>
+    <script src="js/filesystem.js?v=81760e18"></script>
+    <script src="js/markdownRenderer.js?v=dea96d98"></script>
+    <script src="js/commands.js?v=37490d03"></script>
+    <script src="js/terminal.js?v=4b49f7b0"></script>
 </body>
 
 </html>
